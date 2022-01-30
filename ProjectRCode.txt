@@ -1,0 +1,50 @@
+library(lubridate)
+library(ggplot2)
+​
+​
+library("dplyr") 
+library("magrittr") 2
+​
+library(tidyverse)
+library(lubridate)
+setwd('C:/Users/shivk/Downloads/')
+​
+
+​
+LifeExData <- read.csv(file="NewDataLifeExpectancy.csv", header=TRUE, sep=",") 
+summary(LifeExData)
+​
+​
+LifeExData$Life.expectancy.at.birth..male..years.. <- as.numeric(LifeExData$Mortality.rate..adult..male..)
+NewDataLifeExpectancy$Mortality_Birth_Male_Adult <- ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 20, 30),"btw 20-30",
+                                           ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 30, 40),"btw 30-40",
+                                                  ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 50, 60),"btw 50-60",
+                                                         ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 70, 80),"btw 70-80",
+                                                                ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 80, 90),"btw 80-90","NULL"))))) 
+​
+​
+NewDataLifeExpectancy$Life.expectancy.at.birth..female..years.. <- as.numeric(LifeExData$Life.expectancy.at.birth..female..years..)
+NewDataLifeExpectancy$WindowLE_Birth_Female <- ifelse(between(NewDataLifeExpectancy$Life.expectancy.at.birth..female..years.., 20, 30),"btw 20-30",
+                                           ifelse(between(LifeExData$Life.expectancy.at.birth..female..years.., 30, 40),"btw 30-40",
+                                                  ifelse(between(LifeExData$Life.expectancy.at.birth..female..years.., 50, 60),"btw 50-60",
+                                                  ifelse(between(LifeExData$Life.expectancy.at.birth..female..years.., 70, 80),"btw 70-80",
+                                                   ifelse(between(LifeExData$Life.expectancy.at.birth..female..years.., 80, 90),"btw 80-90","NULL"))))) 
+​
+​
+write.csv(LifeExData,"E:\\DPU\\Data V project\\Project Tables\\combined\\LifeExpect1_1.csv", row.names = FALSE)
+
+
+>NewDataLifeExpectancy$Mortality_Birth_Female_Adult <- ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultFeMale, 400, 500),"400-500",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultFeMale, 500, 600),"500-600",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultFeMale, 100, 200),"100-200",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultFeMale, 0, 100),"0-100",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultFeMale, 200, 300),"200-300",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultFeMale, 300, 400),"300-400",">600"))))))
+
+> NewDataLifeExpectancy$Mortality_Birth_Male_Adult <- ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 400, 500),"400-500",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 500, 600),"500-600",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 100, 200),"100-200",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 0, 100),"0-100",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 200, 300),"200-300",ifelse(between(NewDataLifeExpectancy$MortalityRateForAdultMale, 300, 400),"300-400",">600"))))))
+
+write.csv(LifeExData,"E:\\DPU\\Data V project\\Project Tables\\combined\\LifeExpect1_1.csv", row.names = FALSE)
+
+
+
+
+
+
+library(readxl)
+NewDataLifeExpectancy <- read_excel("C:/Users/shivk/Downloads/NewDataLifeExpectancy.xlsx")
+View(NewDataLifeExpectancy)
